@@ -1,0 +1,95 @@
+---
+import { Image, getImage } from 'astro:assets';
+import Icon from '../Icon.astro';
+import { t, type Lang } from '../../i18n';
+import { club } from '../../data/site';
+import p1 from '../../../images/photo1.png';
+import p2 from '../../../images/photo2.png';
+import p3 from '../../../images/photo3.png';
+import p4 from '../../../images/photo4.png';
+
+interface Props { lang: Lang }
+const d = t(Astro.props.lang);
+const photos = [p1, p2, p3, p4];
+const full = await Promise.all(photos.map((src) => getImage({ src, format: 'webp' })));
+---
+
+<section id="gallery" class="section">
+  <div class="container">
+    <div class="gallery__head reveal">
+      <div>
+        <p class="label">{d.gallery.label}</p>
+        <h2 class="h2">{d.gallery.title}</h2>
+      </div>
+      <a class="btn btn--ghost" href={club.instagram} target="_blank" rel="noopener">
+        <Icon name="instagram" size={20} /> {d.gallery.instagram}
+      </a>
+    </div>
+
+    <ul class="grid">
+      {photos.map((src, i) => (
+        <li class="grid__item reveal" style={`transition-delay:${i * 70}ms`}>
+          <button type="button" class="grid__btn photo" data-full={full[i].src} data-alt={d.gallery.alt[i]}>
+            <Image src={src} alt={d.gallery.alt[i]} widths={[360, 716]} sizes="(max-width: 720px) 50vw, 25vw" />
+          </button>
+        </li>
+      ))}
+    </ul>
+
+    <p class="gallery__handle reveal">
+      <a href={club.instagram} target="_blank" rel="noopener">{club.instagramHandle}</a>
+    </p>
+  </div>
+
+  <dialog class="lightbox" data-lightbox>
+    <img src="" alt="" data-lightbox-img />
+    <button type="button" class="lightbox__close" data-lightbox-close aria-label={d.gallery.close}>
+      <Icon name="close" size={28} />
+    </button>
+  </dialog>
+</section>
+
+<style>
+  .gallery__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 40px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; list-style: none; padding: 0; margin: 0; }
+  .grid__item:nth-child(even) { margin-top: 40px; }
+  .grid__btn { display: block; width: 100%; aspect-ratio: 713 / 820; padding: 0; border: 0; cursor: zoom-in; }
+  .grid__btn :global(img) { transition: transform 0.6s ease, filter 0.4s; }
+  .grid__btn:hover :global(img) { transform: scale(1.05); filter: saturate(1) brightness(0.95); }
+  .grid__btn::after { transition: opacity 0.4s; }
+  .grid__btn:hover::after { opacity: 0.3; }
+  .gallery__handle { text-align: center; margin-top: 32px; font-family: var(--font-head); letter-spacing: 0.08em; }
+  .gallery__handle a { color: var(--gold); text-decoration: none; }
+  .gallery__handle a:hover { text-decoration: underline; }
+
+  .lightbox {
+    padding: 0; border: 0; background: transparent; max-width: min(92vw, 720px); max-height: 92vh; overflow: visible;
+  }
+  .lightbox::backdrop { background: rgba(0, 0, 0, 0.9); }
+  .lightbox img { max-height: 88vh; width: auto; margin-inline: auto; box-shadow: 0 0 0 2px var(--gold); }
+  .lightbox__close {
+    position: absolute; top: -52px; right: 0; width: 44px; height: 44px;
+    display: grid; place-items: center; background: none; border: 0; color: var(--text); cursor: pointer;
+  }
+
+  @media (max-width: 720px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .grid__item:nth-child(even) { margin-top: 24px; }
+  }
+</style>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('[data-lightbox]');
+  const img = document.querySelector<HTMLImageElement>('[data-lightbox-img]');
+  if (dialog && img && typeof dialog.showModal === 'function') {
+    document.querySelectorAll<HTMLButtonElement>('[data-full]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        img.src = btn.dataset.full!;
+        img.alt = btn.dataset.alt ?? '';
+        dialog.showModal();
+      });
+    });
+    dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+    dialog.querySelector('[data-lightbox-close]')?.addEventListener('click', () => dialog.close());
+  }
+</script>

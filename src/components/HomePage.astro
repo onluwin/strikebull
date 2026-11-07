@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from './sections/Hero.astro';
+import About from './sections/About.astro';
+import Disciplines from './sections/Disciplines.astro';
+import Why from './sections/Why.astro';
+import Schedule from './sections/Schedule.astro';
+import Coach from './sections/Coach.astro';
+import Prices from './sections/Prices.astro';
+import Gallery from './sections/Gallery.astro';
+import Reviews from './sections/Reviews.astro';
+import Faq from './sections/Faq.astro';
+import Contact from './sections/Contact.astro';
+import type { Lang } from '../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+---
+
+<Base lang={lang} path="/" isHome>
+  <Hero lang={lang} />
+  <About lang={lang} />
+  <Disciplines lang={lang} />
+  <Why lang={lang} />
+  <Schedule lang={lang} />
+  <Coach lang={lang} />
+  <Prices lang={lang} />
+  <Gallery lang={lang} />
+  <Reviews lang={lang} />
+  <Faq lang={lang} />
+  <Contact lang={lang} />
+</Base>

@@ -1,0 +1,63 @@
+---
+/**
+ * ⚠️ PLACEHOLDER REVIEWS — the texts in src/i18n/*.json (reviews.items) are invented
+ * to show the layout. Replace them with real member quotes (with permission)
+ * or remove <Reviews /> from src/components/HomePage.astro before going live.
+ */
+import Icon from '../Icon.astro';
+import { t, type Lang } from '../../i18n';
+
+interface Props { lang: Lang }
+const d = t(Astro.props.lang);
+---
+
+<section id="reviews" class="section section--alt texture">
+  <div class="container">
+    <div class="section-head section-head--center reveal">
+      <p class="label">{d.reviews.label}</p>
+      <h2 class="h2">{d.reviews.title}</h2>
+    </div>
+
+    <div class="reviews">
+      {d.reviews.items.map((r, i) => (
+        <figure class="review reveal" style={`transition-delay:${i * 90}ms`}>
+          <Icon name="quote" size={40} class="review__quote" />
+          <div class="review__stars" role="img" aria-label="5/5">
+            {[0, 1, 2, 3, 4].map(() => <Icon name="star" size={18} />)}
+          </div>
+          <blockquote class="review__text"><p>{r.text}</p></blockquote>
+          <figcaption class="review__author">
+            <span class="review__avatar" aria-hidden="true">{r.name.charAt(0)}</span>
+            <span>
+              <strong>{r.name}</strong>
+              <span class="review__meta">{r.meta}</span>
+            </span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .review {
+    position: relative; margin: 0; display: flex; flex-direction: column;
+    padding: 36px 30px 28px; background: var(--surface); border-bottom: 3px solid var(--gold);
+  }
+  .review :global(.review__quote) { position: absolute; top: 24px; right: 24px; color: rgba(179, 18, 27, 0.45); }
+  .review__stars { display: flex; gap: 3px; color: var(--gold); }
+  .review__text { margin: 20px 0 0; flex: 1; font-size: 1.02rem; color: #ddd7cb; }
+  .review__author { display: flex; align-items: center; gap: 14px; margin-top: 28px; }
+  .review__author strong { display: block; font-family: var(--font-head); letter-spacing: 0.06em; font-weight: 600; }
+  .review__meta { font-size: 0.85rem; color: var(--muted); }
+  .review__avatar {
+    width: 44px; height: 44px; flex-shrink: 0; display: grid; place-items: center;
+    font-family: var(--font-head); font-weight: 700; font-size: 1.2rem; color: #111;
+    background: var(--gold-grad);
+    clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+  }
+  @media (max-width: 920px) {
+    .reviews { grid-template-columns: 1fr; max-width: 600px; margin-inline: auto; }
+  }
+</style>

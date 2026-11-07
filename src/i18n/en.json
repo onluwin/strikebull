@@ -1,0 +1,213 @@
+{
+  "meta": {
+    "title": "STRIKEBULL MMA Club Chur – MMA, Boxing, Muay Thai, BJJ & Wrestling",
+    "description": "MMA training in Chur for beginners and advanced athletes: boxing, Muay Thai, BJJ and wrestling. Every Tuesday and Friday. Your first 2 trial sessions are free.",
+    "langName": "English"
+  },
+  "nav": {
+    "about": "About",
+    "disciplines": "Training",
+    "schedule": "Schedule",
+    "coach": "Coach",
+    "prices": "Prices",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "cta": "Free trial",
+    "menu": "Open menu",
+    "close": "Close menu"
+  },
+  "days": {
+    "mon": "Monday", "tue": "Tuesday", "wed": "Wednesday", "thu": "Thursday", "fri": "Friday", "sat": "Saturday", "sun": "Sunday",
+    "short": ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+    "and": "&"
+  },
+  "hero": {
+    "kicker": "MMA Club · Chur",
+    "titleA": "Strong as a",
+    "titleB": "bull.",
+    "lead": "MMA, boxing, Muay Thai, BJJ and wrestling in Chur – for beginners and advanced athletes. Your first two sessions are free.",
+    "cta": "Book a free trial",
+    "secondary": "Schedule",
+    "badges": ["2 free trial sessions", "Coaching since 2014", "Tue & Fri · 18:30"]
+  },
+  "about": {
+    "label": "About us",
+    "title": "A club for everyone who wants more",
+    "p1": "STRIKEBULL is a new MMA club in Chur. Beginners, hobby athletes and competitors train side by side – with respect, discipline and a lot of fun.",
+    "p2": "Whether you want to get fitter, learn to defend yourself or step into the ring: we meet you where you are. No experience needed – just the will to work on yourself.",
+    "stats": [
+      { "value": "2014", "label": "Coaching since" },
+      { "value": "2×", "label": "Sessions per week" },
+      { "value": "4", "label": "Combat sports" }
+    ]
+  },
+  "disciplines": {
+    "label": "Training",
+    "title": "What you'll learn",
+    "intro": "MMA combines the best of stand-up and ground fighting. With us, you train both.",
+    "items": [
+      {
+        "icon": "🥊",
+        "kicker": "Stand-up",
+        "title": "Boxing & Muay Thai",
+        "text": "Punches, kicks, knees and elbows. You learn clean technique, distance control and combinations – and get in great shape along the way.",
+        "tags": ["Boxing", "Muay Thai"]
+      },
+      {
+        "icon": "🥋",
+        "kicker": "Ground",
+        "title": "BJJ & Wrestling",
+        "text": "Takedowns, ground control and submissions. Technique beats strength here – ideal for lighter athletes too.",
+        "tags": ["BJJ", "Wrestling"]
+      },
+      {
+        "icon": "🐂",
+        "kicker": "MMA",
+        "title": "All together",
+        "text": "We combine stand-up and ground fighting into one complete system – for self-defence, fitness or the path to competition.",
+        "tags": ["MMA", "Sparring"]
+      }
+    ]
+  },
+  "why": {
+    "label": "Why us",
+    "title": "Why STRIKEBULL",
+    "items": [
+      { "title": "Experienced coach", "text": "Coaching since 2014 – you learn the right technique from day one." },
+      { "title": "Every level", "text": "Beginners and advanced athletes train together, each at their own pace." },
+      { "title": "Safety first", "text": "Controlled sparring, protective gear and clear rules." },
+      { "title": "Strong team", "text": "You never train alone. We push each other – on and off the mat." }
+    ]
+  },
+  "schedule": {
+    "label": "Schedule",
+    "title": "Twice a week. Every week.",
+    "session": "MMA training · all levels",
+    "note": "Come 10 minutes early so you have time to get changed."
+  },
+  "coach": {
+    "label": "Coach",
+    "title": "Your coach",
+    "name": "Dmytro Chernenko",
+    "role": "Head Coach",
+    "text": "Dmytro has been coaching fighters of every level since 2014 – from their very first session all the way to competition. He puts great emphasis on clean technique, discipline and an atmosphere where everyone feels welcome.",
+    "facts": ["Coaching since 2014", "Stand-up & ground", "Beginners to competitors"]
+  },
+  "prices": {
+    "label": "Prices",
+    "title": "Start risk-free",
+    "intro": "Your first two sessions are free and without obligation. After that, choose what suits you.",
+    "free": "Free",
+    "popular": "Popular",
+    "cta": "Get started",
+    "note": "All prices in CHF.",
+    "plans": {
+      "trial": { "name": "Trial", "unit": "2 sessions", "features": ["No obligation", "No gear needed", "All levels"] },
+      "single": { "name": "Drop-in", "unit": "per session", "features": ["Flexible", "No membership"] },
+      "month": { "name": "Monthly", "unit": "per month", "features": ["All sessions", "Cancel monthly"] },
+      "year": { "name": "Yearly", "unit": "per year", "features": ["All sessions", "2 months free"] }
+    }
+  },
+  "gallery": {
+    "label": "Gallery",
+    "title": "Inside our training",
+    "instagram": "More on Instagram",
+    "alt": ["Coach explaining a drill to the group", "Sparring during training", "Group warming up in the gym", "Coach watching two fighters spar"],
+    "close": "Close"
+  },
+  "reviews": {
+    "label": "Reviews",
+    "title": "What our members say",
+    "items": [
+      { "text": "I had zero experience and felt welcome from the very first session. Dmytro explains every technique so you really understand it.", "name": "Luca M.", "meta": "Beginner" },
+      { "text": "Finally a club in Chur where stand-up and ground fighting are taken equally seriously. Training is tough, but the vibe is great.", "name": "Sandro K.", "meta": "Muay Thai & BJJ" },
+      { "text": "After three months I'm fitter than ever. Tuesday and Friday are now the best evenings of my week.", "name": "Elena R.", "meta": "Fitness & self-defence" }
+    ]
+  },
+  "faq": {
+    "label": "FAQ",
+    "title": "Frequently asked questions",
+    "items": [
+      { "q": "Do I need experience?", "a": "No. Many of our members started from scratch with us. Training is adapted to your level." },
+      { "q": "What should I bring?", "a": "Sportswear (T-shirt, shorts or long trousers), a water bottle and a good mood!" },
+      { "q": "How much is the trial?", "a": "Nothing. Your first two sessions are free and without obligation." },
+      { "q": "Do I need my own gear?", "a": "Not for the first sessions. If you stay, we recommend your own gloves, shin guards and a mouthguard – we're happy to advise you." },
+      { "q": "What is the minimum age?", "a": "Our training is for teenagers from 14 and adults. Minors need their parents' consent." },
+      { "q": "Do I have to spar?", "a": "No. Sparring is voluntary and always controlled. You decide when you're ready." },
+      { "q": "Where exactly is the training?", "a": "In the gym of Schulheim Chur, Masanserstrasse 205, 7000 Chur." }
+    ]
+  },
+  "contact": {
+    "label": "Contact",
+    "title": "Book a free trial",
+    "intro": "Fill in the form and we'll get back to you as soon as possible. Or message us directly on WhatsApp.",
+    "form": {
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email",
+      "day": "Preferred day",
+      "message": "Message (optional)",
+      "messagePlaceholder": "Any questions or previous experience? Let us know.",
+      "consentBefore": "I have read the",
+      "consentLink": "privacy policy",
+      "consentAfter": "and agree that my data will be used to process my request.",
+      "submit": "Send request",
+      "sending": "Sending…",
+      "success": "Thanks! We've received your request and will get back to you soon.",
+      "error": "Something went wrong. Please try again or message us on WhatsApp.",
+      "subject": "New trial request – STRIKEBULL"
+    },
+    "info": {
+      "address": "Address",
+      "phone": "Phone / WhatsApp",
+      "email": "Email",
+      "training": "Training"
+    },
+    "map": {
+      "show": "Show map",
+      "note": "Loading the map transfers data to Google.",
+      "open": "Open in Google Maps"
+    }
+  },
+  "footer": {
+    "tagline": "MMA · Boxing · Muay Thai · BJJ · Wrestling in Chur",
+    "impressum": "Legal notice",
+    "privacy": "Privacy",
+    "rights": "All rights reserved."
+  },
+  "whatsapp": {
+    "label": "Message us on WhatsApp",
+    "message": "Hi STRIKEBULL! I'm interested in a trial session."
+  },
+  "legal": {
+    "placeholder": "Placeholder – this text will be completed and reviewed before launch.",
+    "back": "Back to home",
+    "impressum": {
+      "title": "Legal notice",
+      "sections": [
+        { "h": "Website operator", "p": ["Strikebull MMA Chur (association)", "Masanserstrasse 205", "7000 Chur, Switzerland"] },
+        { "h": "Contact", "p": ["Phone: +41 79 903 25 32", "Email: strikebull@mail.ch"] },
+        { "h": "Authorised representative", "p": ["[Name of president – to be added]"] },
+        { "h": "Disclaimer", "p": ["We check the content of this website carefully but accept no liability for its accuracy, completeness or timeliness. The operators of external links are solely responsible for their content."] },
+        { "h": "Copyright", "p": ["Texts, images and logo on this website belong to Strikebull MMA Chur. Use requires written permission."] }
+      ]
+    },
+    "privacy": {
+      "title": "Privacy policy",
+      "sections": [
+        { "h": "Controller", "p": ["Strikebull MMA Chur (association), Masanserstrasse 205, 7000 Chur, Switzerland. Email: strikebull@mail.ch"] },
+        { "h": "Contact form", "p": ["When you contact us via the form, we process your name, phone number, email address, preferred day and message to answer your request. We use the Web3Forms service to send it. [Provider and server location details to be added.]"] },
+        { "h": "Google Maps", "p": ["The map only loads after you click «Show map». Data (e.g. your IP address) is then transferred to Google LLC, USA."] },
+        { "h": "Instagram", "p": ["We link to our Instagram profile. Meta's privacy policy only applies once you follow the link."] },
+        { "h": "Hosting", "p": ["[Hosting provider details to be added.]"] },
+        { "h": "Retention", "p": ["We only keep your data as long as needed to process your request."] },
+        { "h": "Your rights", "p": ["You can request information about your data and ask for it to be corrected or deleted at any time. Write to strikebull@mail.ch."] }
+      ]
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "This page doesn't exist – but training does.",
+    "back": "Go to home page"
+  }
+}

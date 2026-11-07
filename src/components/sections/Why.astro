@@ -1,0 +1,57 @@
+---
+import Icon from '../Icon.astro';
+import { t, type Lang } from '../../i18n';
+
+interface Props { lang: Lang }
+const d = t(Astro.props.lang);
+const icons = ['medal', 'levels', 'shield', 'users'] as const;
+---
+
+<section class="section why">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="label">{d.why.label}</p>
+      <h2 class="h2">{d.why.title}</h2>
+    </div>
+    <ol class="why__grid">
+      {d.why.items.map((item, i) => (
+        <li class="why__item reveal" style={`transition-delay:${i * 80}ms`}>
+          <span class="why__num" aria-hidden="true">0{i + 1}</span>
+          <Icon name={icons[i]} size={34} class="why__icon" />
+          <h3 class="why__title">{item.title}</h3>
+          <p class="why__text">{item.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .why__grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    list-style: none; padding: 0; margin: 0;
+    border-top: 1px solid var(--line);
+  }
+  .why__item {
+    position: relative; padding: 36px 28px 8px 0;
+  }
+  .why__item + .why__item { padding-left: 28px; border-left: 1px solid var(--line-soft); }
+  .why__num {
+    position: absolute; top: 18px; right: 20px;
+    font-family: var(--font-head); font-size: 3.4rem; font-weight: 700; line-height: 1;
+    color: transparent; -webkit-text-stroke: 1px rgba(201, 162, 74, 0.25);
+  }
+  .why__item :global(.why__icon) { color: var(--gold); }
+  .why__title { font-size: 1.35rem; margin-top: 20px; }
+  .why__text { color: var(--muted); margin-top: 10px; font-size: 0.98rem; }
+
+  @media (max-width: 920px) {
+    .why__grid { grid-template-columns: 1fr 1fr; }
+    .why__item:nth-child(3) { padding-left: 0; border-left: 0; }
+    .why__item { padding-bottom: 28px; }
+  }
+  @media (max-width: 520px) {
+    .why__grid { grid-template-columns: 1fr; }
+    .why__item + .why__item { padding-left: 0; border-left: 0; border-top: 1px solid var(--line-soft); }
+  }
+</style>

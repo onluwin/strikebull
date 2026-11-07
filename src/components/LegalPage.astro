@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import { localize, t, type Lang } from '../i18n';
+import { club } from '../data/site';
+
+interface Props { lang: Lang; page: 'impressum' | 'privacy' }
+const { lang, page } = Astro.props;
+const d = t(lang);
+const content = d.legal[page];
+const path = page === 'impressum' ? '/impressum/' : '/datenschutz/';
+---
+
+<Base lang={lang} path={path} title={content.title} noindex>
+  <section class="legal">
+    <div class="container legal__inner">
+      <p class="label">{club.name}</p>
+      <h1 class="h2">{content.title}</h1>
+      <p class="legal__note">{d.legal.placeholder}</p>
+
+      {content.sections.map((s) => (
+        <section class="legal__section">
+          <h2>{s.h}</h2>
+          {s.p.map((line) => <p>{line}</p>)}
+        </section>
+      ))}
+
+      <a class="btn btn--ghost legal__back" href={localize(lang, '/')}>← {d.legal.back}</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .legal { padding: calc(var(--header-h) + 64px) 0 96px; }
+  .legal__inner { max-width: 820px; }
+  .legal__note {
+    margin: 28px 0 8px; padding: 14px 18px;
+    background: rgba(179, 18, 27, 0.15); border-left: 3px solid var(--red); font-size: 0.95rem;
+  }
+  .legal__section { margin-top: 36px; }
+  .legal__section h2 { font-size: 1.3rem; color: var(--gold); margin-bottom: 10px; letter-spacing: 0.06em; }
+  .legal__section p { color: #d8d2c6; }
+  .legal__back { margin-top: 56px; }
+</style>

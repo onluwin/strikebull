@@ -1,0 +1,81 @@
+---
+import Icon from '../Icon.astro';
+import { t, type Lang } from '../../i18n';
+import { prices } from '../../data/site';
+
+interface Props { lang: Lang }
+const d = t(Astro.props.lang);
+---
+
+<section id="prices" class="section section--alt texture">
+  <div class="container">
+    <div class="section-head section-head--center reveal">
+      <p class="label">{d.prices.label}</p>
+      <h2 class="h2">{d.prices.title}</h2>
+      <p class="lead">{d.prices.intro}</p>
+    </div>
+
+    <div class="plans">
+      {prices.map((p, i) => {
+        const plan = d.prices.plans[p.key];
+        const isTrial = p.amount === null;
+        return (
+          <article
+            class:list={['plan reveal', { 'plan--featured': p.featured, 'plan--trial': isTrial }]}
+            style={`transition-delay:${i * 80}ms`}
+          >
+            {p.featured && <span class="plan__badge">{d.prices.popular}</span>}
+            <h3 class="plan__name">{plan.name}</h3>
+            <p class="plan__price">
+              {isTrial ? (
+                <span class="plan__amount gold-text">{d.prices.free}</span>
+              ) : (
+                <>
+                  <span class="plan__cur">CHF</span>
+                  <span class="plan__amount">{p.amount}</span>
+                </>
+              )}
+            </p>
+            <p class="plan__unit">{plan.unit}</p>
+            <ul class="plan__features">
+              {plan.features.map((f) => <li><Icon name="check" size={16} /> {f}</li>)}
+            </ul>
+            <a href="#contact" class:list={['btn btn--block', { 'btn--ghost': !p.featured && !isTrial }]}>
+              {d.prices.cta}
+            </a>
+          </article>
+        );
+      })}
+    </div>
+    <p class="plans__note">{d.prices.note}</p>
+  </div>
+</section>
+
+<style>
+  .plans { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; align-items: stretch; }
+  .plan {
+    position: relative; display: flex; flex-direction: column;
+    padding: 32px 24px 24px; background: var(--surface);
+    border: 1px solid var(--line-soft);
+  }
+  .plan--trial { border-color: var(--gold); background: linear-gradient(180deg, rgba(201,162,74,0.1), var(--surface) 50%); }
+  .plan--featured { border-color: var(--red); background: linear-gradient(180deg, rgba(179,18,27,0.18), var(--surface) 55%); }
+  .plan__badge {
+    position: absolute; top: -1px; right: -1px;
+    background: var(--red); color: #fff; padding: 4px 12px;
+    font-family: var(--font-head); font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .plan__name { font-size: 1.25rem; letter-spacing: 0.08em; color: var(--muted); }
+  .plan__price { display: flex; align-items: baseline; gap: 8px; margin-top: 18px; font-family: var(--font-head); font-weight: 700; }
+  .plan__cur { font-size: 1.1rem; color: var(--gold); }
+  .plan__amount { font-size: 3.2rem; line-height: 1; }
+  .plan__unit { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
+  .plan__features { list-style: none; padding: 20px 0 0; margin: 20px 0 28px; border-top: 1px solid var(--line-soft); flex: 1; }
+  .plan__features li { display: flex; align-items: center; gap: 8px; font-size: 0.95rem; padding: 4px 0; }
+  .plan__features :global(svg) { color: var(--gold); flex-shrink: 0; }
+  .plan .btn { min-height: 46px; padding: 0 12px; font-size: 0.88rem; }
+  .plans__note { text-align: center; color: var(--muted); font-size: 0.88rem; margin-top: 24px; }
+
+  @media (max-width: 1020px) { .plans { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px) { .plans { grid-template-columns: 1fr; } }
+</style>

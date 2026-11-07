@@ -1,0 +1,213 @@
+{
+  "meta": {
+    "title": "STRIKEBULL MMA Club Chur – MMA, Boxen, Thaiboxen, BJJ & Ringen",
+    "description": "MMA-Training in Chur für Anfänger und Fortgeschrittene: Boxen, Thaiboxen, BJJ und Ringen. Jeden Dienstag und Freitag. Die ersten 2 Probetrainings sind gratis.",
+    "langName": "Deutsch"
+  },
+  "nav": {
+    "about": "Über uns",
+    "disciplines": "Training",
+    "schedule": "Zeiten",
+    "coach": "Trainer",
+    "prices": "Preise",
+    "faq": "FAQ",
+    "contact": "Kontakt",
+    "cta": "Probetraining",
+    "menu": "Menü öffnen",
+    "close": "Menü schliessen"
+  },
+  "days": {
+    "mon": "Montag", "tue": "Dienstag", "wed": "Mittwoch", "thu": "Donnerstag", "fri": "Freitag", "sat": "Samstag", "sun": "Sonntag",
+    "short": ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
+    "and": "&"
+  },
+  "hero": {
+    "kicker": "MMA Club · Chur",
+    "titleA": "Stark wie ein",
+    "titleB": "Bulle.",
+    "lead": "MMA, Boxen, Thaiboxen, BJJ und Ringen in Chur – für Anfänger und Fortgeschrittene. Deine ersten zwei Trainings sind gratis.",
+    "cta": "Gratis Probetraining buchen",
+    "secondary": "Trainingszeiten",
+    "badges": ["2 Probetrainings gratis", "Coaching seit 2014", "Di & Fr · 18:30"]
+  },
+  "about": {
+    "label": "Über uns",
+    "title": "Ein Club für alle, die mehr wollen",
+    "p1": "STRIKEBULL ist ein neuer MMA Club in Chur. Bei uns trainieren Anfänger, Hobbysportler und Wettkämpfer Seite an Seite – mit Respekt, Disziplin und viel Spass.",
+    "p2": "Ob du fitter werden, dich verteidigen können oder in den Ring steigen willst: Wir holen dich dort ab, wo du stehst. Erfahrung brauchst du keine – nur den Willen, an dir zu arbeiten.",
+    "stats": [
+      { "value": "2014", "label": "Coaching seit" },
+      { "value": "2×", "label": "Training pro Woche" },
+      { "value": "4", "label": "Kampfsportarten" }
+    ]
+  },
+  "disciplines": {
+    "label": "Training",
+    "title": "Was du bei uns lernst",
+    "intro": "MMA vereint das Beste aus Stand- und Bodenkampf. Bei uns trainierst du beides.",
+    "items": [
+      {
+        "icon": "🥊",
+        "kicker": "Standkampf",
+        "title": "Boxen & Thaiboxen",
+        "text": "Schläge, Kicks, Knie und Ellbogen. Du lernst saubere Technik, Distanzgefühl und Kombinationen – und bekommst ganz nebenbei top Kondition.",
+        "tags": ["Boxen", "Thaiboxen"]
+      },
+      {
+        "icon": "🥋",
+        "kicker": "Bodenkampf",
+        "title": "BJJ & Ringen",
+        "text": "Takedowns, Kontrolle am Boden und Submissions. Hier zählt Technik mehr als Kraft – ideal auch für Leichtere.",
+        "tags": ["BJJ", "Ringen"]
+      },
+      {
+        "icon": "🐂",
+        "kicker": "MMA",
+        "title": "Alles zusammen",
+        "text": "Wir verbinden Stand- und Bodenkampf zu einem kompletten System – für Selbstverteidigung, Fitness oder den Weg in den Wettkampf.",
+        "tags": ["MMA", "Sparring"]
+      }
+    ]
+  },
+  "why": {
+    "label": "Warum wir",
+    "title": "Warum STRIKEBULL",
+    "items": [
+      { "title": "Erfahrener Trainer", "text": "Coaching-Erfahrung seit 2014 – du lernst von Anfang an die richtige Technik." },
+      { "title": "Für jedes Level", "text": "Anfänger und Fortgeschrittene trainieren zusammen, jeder in seinem Tempo." },
+      { "title": "Sicherheit zuerst", "text": "Kontrolliertes Sparring, Schutzausrüstung und klare Regeln." },
+      { "title": "Starkes Team", "text": "Bei uns trainierst du nicht allein. Wir pushen uns gegenseitig – auf und neben der Matte." }
+    ]
+  },
+  "schedule": {
+    "label": "Trainingszeiten",
+    "title": "Zweimal pro Woche. Jede Woche.",
+    "session": "MMA Training · alle Levels",
+    "note": "Komm 10 Minuten früher, damit du dich in Ruhe umziehen kannst."
+  },
+  "coach": {
+    "label": "Trainer",
+    "title": "Dein Trainer",
+    "name": "Dmytro Chernenko",
+    "role": "Head Coach",
+    "text": "Dmytro coacht seit 2014 Kampfsportler aller Levels – vom ersten Training bis zum Wettkampf. Er legt grossen Wert auf saubere Technik, Disziplin und eine Atmosphäre, in der sich jeder wohlfühlt.",
+    "facts": ["Coaching seit 2014", "Stand- & Bodenkampf", "Anfänger bis Wettkämpfer"]
+  },
+  "prices": {
+    "label": "Preise",
+    "title": "Starte ohne Risiko",
+    "intro": "Deine ersten zwei Trainings sind gratis und unverbindlich. Danach wählst du, was zu dir passt.",
+    "free": "Gratis",
+    "popular": "Beliebt",
+    "cta": "Jetzt starten",
+    "note": "Alle Preise in CHF.",
+    "plans": {
+      "trial": { "name": "Probetraining", "unit": "2 Trainings", "features": ["Unverbindlich", "Keine Ausrüstung nötig", "Alle Levels"] },
+      "single": { "name": "Einzeltraining", "unit": "pro Training", "features": ["Flexibel", "Ohne Abo"] },
+      "month": { "name": "Monatsabo", "unit": "pro Monat", "features": ["Alle Trainings", "Monatlich kündbar"] },
+      "year": { "name": "Jahresabo", "unit": "pro Jahr", "features": ["Alle Trainings", "2 Monate geschenkt"] }
+    }
+  },
+  "gallery": {
+    "label": "Galerie",
+    "title": "Einblicke ins Training",
+    "instagram": "Mehr auf Instagram",
+    "alt": ["Trainer erklärt der Gruppe eine Übung", "Sparring im Training", "Gruppe beim Aufwärmen in der Turnhalle", "Trainer beobachtet zwei Kämpfer beim Sparring"],
+    "close": "Schliessen"
+  },
+  "reviews": {
+    "label": "Stimmen",
+    "title": "Das sagen unsere Mitglieder",
+    "items": [
+      { "text": "Ich hatte null Erfahrung und wurde vom ersten Training an super aufgenommen. Dmytro erklärt jede Technik so, dass man sie wirklich versteht.", "name": "Luca M.", "meta": "Anfänger" },
+      { "text": "Endlich ein Club in Chur, wo Stand- und Bodenkampf gleich ernst genommen werden. Das Training ist hart, aber die Stimmung ist top.", "name": "Sandro K.", "meta": "Thaiboxen & BJJ" },
+      { "text": "Nach drei Monaten bin ich fitter als je zuvor. Dienstag und Freitag sind mittlerweile die besten Abende meiner Woche.", "name": "Elena R.", "meta": "Fitness & Selbstverteidigung" }
+    ]
+  },
+  "faq": {
+    "label": "FAQ",
+    "title": "Häufige Fragen",
+    "items": [
+      { "q": "Brauche ich Vorerfahrung?", "a": "Nein. Viele unserer Mitglieder haben bei uns ganz von vorne angefangen. Das Training wird an dein Level angepasst." },
+      { "q": "Was muss ich mitbringen?", "a": "Sportbekleidung (T-Shirt, Shorts oder lange Hose), eine Trinkflasche und gute Laune!" },
+      { "q": "Was kostet das Probetraining?", "a": "Nichts. Deine ersten zwei Trainings sind gratis und unverbindlich." },
+      { "q": "Brauche ich eigene Ausrüstung?", "a": "Für die ersten Trainings nicht. Wenn du dabeibleibst, empfehlen wir eigene Handschuhe, Schienbeinschoner und einen Mundschutz – wir beraten dich gerne." },
+      { "q": "Ab welchem Alter kann ich mitmachen?", "a": "Unser Training richtet sich an Jugendliche ab 14 Jahren und Erwachsene. Bei Minderjährigen brauchen wir das Einverständnis der Eltern." },
+      { "q": "Muss ich sparren?", "a": "Nein. Sparring ist freiwillig und immer kontrolliert. Du entscheidest, wann du bereit bist." },
+      { "q": "Wo genau findet das Training statt?", "a": "In der Turnhalle des Schulheims Chur, Masanserstrasse 205, 7000 Chur." }
+    ]
+  },
+  "contact": {
+    "label": "Kontakt",
+    "title": "Gratis Probetraining buchen",
+    "intro": "Füll das Formular aus – wir melden uns so schnell wie möglich bei dir. Oder schreib uns direkt auf WhatsApp.",
+    "form": {
+      "name": "Name",
+      "phone": "Telefon",
+      "email": "E-Mail",
+      "day": "Wunschtag",
+      "message": "Nachricht (optional)",
+      "messagePlaceholder": "Hast du Fragen oder schon Erfahrung? Schreib es uns.",
+      "consentBefore": "Ich habe die",
+      "consentLink": "Datenschutzerklärung",
+      "consentAfter": "gelesen und bin einverstanden, dass meine Daten zur Bearbeitung meiner Anfrage verwendet werden.",
+      "submit": "Anfrage senden",
+      "sending": "Wird gesendet…",
+      "success": "Danke! Deine Anfrage ist angekommen. Wir melden uns bald bei dir.",
+      "error": "Das hat leider nicht geklappt. Bitte versuch es nochmal oder schreib uns auf WhatsApp.",
+      "subject": "Neue Anfrage Probetraining – STRIKEBULL"
+    },
+    "info": {
+      "address": "Adresse",
+      "phone": "Telefon / WhatsApp",
+      "email": "E-Mail",
+      "training": "Training"
+    },
+    "map": {
+      "show": "Karte anzeigen",
+      "note": "Beim Laden der Karte werden Daten an Google übertragen.",
+      "open": "In Google Maps öffnen"
+    }
+  },
+  "footer": {
+    "tagline": "MMA · Boxen · Thaiboxen · BJJ · Ringen in Chur",
+    "impressum": "Impressum",
+    "privacy": "Datenschutz",
+    "rights": "Alle Rechte vorbehalten."
+  },
+  "whatsapp": {
+    "label": "Auf WhatsApp schreiben",
+    "message": "Hallo STRIKEBULL! Ich interessiere mich für ein Probetraining."
+  },
+  "legal": {
+    "placeholder": "Platzhalter – dieser Text wird vor der Veröffentlichung vervollständigt und geprüft.",
+    "back": "Zurück zur Startseite",
+    "impressum": {
+      "title": "Impressum",
+      "sections": [
+        { "h": "Betreiber der Website", "p": ["Strikebull MMA Chur (Verein)", "Masanserstrasse 205", "7000 Chur, Schweiz"] },
+        { "h": "Kontakt", "p": ["Telefon: +41 79 903 25 32", "E-Mail: strikebull@mail.ch"] },
+        { "h": "Vertretungsberechtigte Person", "p": ["[Name Präsident/in – wird ergänzt]"] },
+        { "h": "Haftungsausschluss", "p": ["Wir prüfen die Inhalte dieser Website sorgfältig, übernehmen jedoch keine Gewähr für Richtigkeit, Vollständigkeit und Aktualität. Für Inhalte externer Links sind ausschliesslich deren Betreiber verantwortlich."] },
+        { "h": "Urheberrechte", "p": ["Texte, Bilder und Logo auf dieser Website gehören Strikebull MMA Chur. Eine Verwendung ist nur mit schriftlicher Zustimmung erlaubt."] }
+      ]
+    },
+    "privacy": {
+      "title": "Datenschutzerklärung",
+      "sections": [
+        { "h": "Verantwortliche Stelle", "p": ["Strikebull MMA Chur (Verein), Masanserstrasse 205, 7000 Chur, Schweiz. E-Mail: strikebull@mail.ch"] },
+        { "h": "Kontaktformular", "p": ["Wenn du uns über das Formular kontaktierst, verarbeiten wir Name, Telefonnummer, E-Mail-Adresse, Wunschtag und deine Nachricht, um deine Anfrage zu beantworten. Für den Versand nutzen wir den Dienst Web3Forms. [Angaben zu Anbieter und Serverstandort werden ergänzt.]"] },
+        { "h": "Google Maps", "p": ["Die Karte wird erst geladen, wenn du auf «Karte anzeigen» klickst. Dabei werden Daten (z. B. deine IP-Adresse) an Google LLC, USA, übertragen."] },
+        { "h": "Instagram", "p": ["Auf unserer Website verlinken wir auf unser Instagram-Profil. Erst wenn du dem Link folgst, gelten die Datenschutzbestimmungen von Meta."] },
+        { "h": "Hosting", "p": ["[Angaben zum Hosting-Anbieter werden ergänzt.]"] },
+        { "h": "Speicherdauer", "p": ["Wir speichern deine Daten nur so lange, wie es für die Bearbeitung deiner Anfrage nötig ist."] },
+        { "h": "Deine Rechte", "p": ["Du kannst jederzeit Auskunft über deine Daten verlangen sowie deren Berichtigung oder Löschung beantragen. Schreib uns dazu an strikebull@mail.ch."] }
+      ]
+    }
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "text": "Diese Seite existiert nicht – aber das Training schon.",
+    "back": "Zur Startseite"
+  }
+}

@@ -1,0 +1,89 @@
+---
+import Icon from '../Icon.astro';
+import { t, type Lang } from '../../i18n';
+import { club, schedule } from '../../data/site';
+
+interface Props { lang: Lang }
+const d = t(Astro.props.lang);
+const week = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'] as const;
+const activeDays = new Set<string>(schedule.map((s) => s.day));
+---
+
+<section id="schedule" class="section section--alt texture">
+  <div class="container">
+    <div class="section-head section-head--center reveal">
+      <p class="label">{d.schedule.label}</p>
+      <h2 class="h2">{d.schedule.title}</h2>
+    </div>
+
+    <ol class="week reveal" aria-hidden="true">
+      {week.map((day, i) => (
+        <li class:list={['week__day', { 'is-on': activeDays.has(day) }]}>{d.days.short[i]}</li>
+      ))}
+    </ol>
+
+    <div class="sessions">
+      {schedule.map((s, i) => (
+        <article class="session reveal" style={`transition-delay:${i * 100}ms`}>
+          <h3 class="session__day">{d.days[s.day]}</h3>
+          <p class="session__time">
+            <time datetime={s.start}>{s.start}</time>
+            <span aria-hidden="true">–</span>
+            <time datetime={s.end}>{s.end}</time>
+          </p>
+          <p class="session__name">{d.schedule.session}</p>
+          <p class="session__place"><Icon name="pin" size={18} /> {club.venue}</p>
+        </article>
+      ))}
+    </div>
+
+    <p class="schedule__note reveal"><Icon name="clock" size={18} /> {d.schedule.note}</p>
+
+    <div class="schedule__cta reveal">
+      <a href="#contact" class="btn">{d.hero.cta} <Icon name="arrow" size={20} /></a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .week {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px;
+    max-width: 640px; margin: 0 auto 40px; padding: 0; list-style: none;
+  }
+  .week__day {
+    text-align: center; padding: 10px 0;
+    font-family: var(--font-head); letter-spacing: 0.1em; text-transform: uppercase;
+    color: #5d5850; background: var(--bg); border: 1px solid var(--line-soft);
+  }
+  .week__day.is-on { background: var(--red); color: #fff; border-color: var(--red); font-weight: 600; }
+
+  .sessions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 900px; margin-inline: auto; }
+  .session {
+    position: relative; padding: 36px 36px 32px;
+    background: var(--surface);
+    border-left: 4px solid var(--gold);
+    clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 0 100%);
+  }
+  .session__day { font-size: 1.5rem; color: var(--gold); letter-spacing: 0.08em; }
+  .session__time {
+    font-family: var(--font-head); font-weight: 700;
+    font-size: clamp(2.6rem, 6vw, 3.8rem); line-height: 1.1; margin-top: 8px;
+    display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap;
+  }
+  .session__time span { color: var(--red-2); }
+  .session__name { margin-top: 10px; font-weight: 600; }
+  .session__place { margin-top: 6px; color: var(--muted); display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
+  .session__place :global(svg) { color: var(--gold); flex-shrink: 0; }
+
+  .schedule__note {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    margin-top: 32px; color: var(--muted); text-align: center;
+  }
+  .schedule__note :global(svg) { color: var(--gold); flex-shrink: 0; }
+  .schedule__cta { text-align: center; margin-top: 32px; }
+
+  @media (max-width: 720px) {
+    .sessions { grid-template-columns: 1fr; }
+    .session { padding: 28px 24px; }
+  }
+</style>

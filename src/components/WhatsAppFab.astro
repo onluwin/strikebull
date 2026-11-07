@@ -1,0 +1,41 @@
+---
+import { t, type Lang } from '../i18n';
+import { club } from '../data/site';
+import Icon from './Icon.astro';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const d = t(lang);
+const href = `https://wa.me/${club.whatsapp}?text=${encodeURIComponent(d.whatsapp.message)}`;
+---
+
+<a class="wa" href={href} target="_blank" rel="noopener" aria-label={d.whatsapp.label}>
+  <Icon name="whatsapp" size={30} />
+  <span class="wa__tip" aria-hidden="true">{d.whatsapp.label}</span>
+</a>
+
+<style>
+  .wa {
+    position: fixed; right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); z-index: 60;
+    width: 60px; height: 60px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: #25d366; color: #fff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 0 3px rgba(37, 211, 102, 0.25);
+    transition: transform 0.2s;
+    animation: wa-pulse 2.8s ease-out 3s 3;
+  }
+  .wa:hover { transform: scale(1.08); }
+  .wa__tip {
+    position: absolute; right: calc(100% + 12px); white-space: nowrap;
+    background: var(--surface); color: var(--text); font-size: 0.85rem; padding: 8px 12px;
+    border: 1px solid var(--line); opacity: 0; transform: translateX(6px); pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .wa:hover .wa__tip, .wa:focus-visible .wa__tip { opacity: 1; transform: none; }
+  @keyframes wa-pulse {
+    0% { box-shadow: 0 8px 24px rgba(0,0,0,.45), 0 0 0 0 rgba(37, 211, 102, 0.6); }
+    70% { box-shadow: 0 8px 24px rgba(0,0,0,.45), 0 0 0 18px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 8px 24px rgba(0,0,0,.45), 0 0 0 0 rgba(37, 211, 102, 0); }
+  }
+  @media (hover: none) { .wa__tip { display: none; } }
+</style>

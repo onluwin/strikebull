@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import { localize, t } from '../i18n';
+
+const d = t('de');
+---
+
+<Base lang="de" path="/404/" title={d.notFound.title} noindex>
+  <section class="nf">
+    <div class="container nf__inner">
+      <p class="nf__code gold-text">404</p>
+      <h1 class="h2">{d.notFound.title}</h1>
+      <p class="lead">{d.notFound.text}</p>
+      <a class="btn" href={localize('de', '/')}>{d.notFound.back}</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf { min-height: 100svh; display: flex; align-items: center; padding: calc(var(--header-h) + 40px) 0 80px; }
+  .nf__inner { text-align: center; display: grid; justify-items: center; gap: 20px; }
+  .nf__code { font-family: var(--font-head); font-weight: 700; font-size: clamp(7rem, 22vw, 14rem); line-height: 0.9; }
+</style>

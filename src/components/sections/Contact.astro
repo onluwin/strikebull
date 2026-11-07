@@ -1,0 +1,286 @@
+---
+import { Image } from 'astro:assets';
+import Icon from '../Icon.astro';
+import { localize, t, type Lang } from '../../i18n';
+import { club, schedule, web3formsKey, mapsEmbed, mapsLink } from '../../data/site';
+import bg from '../../../images/photo3.png';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const d = t(lang);
+const f = d.contact.form;
+const wa = `https://wa.me/${club.whatsapp}?text=${encodeURIComponent(d.whatsapp.message)}`;
+const days = schedule.map((s) => d.days[s.day]).join(` ${d.days.and} `);
+---
+
+<section id="contact" class="section contact">
+  <div class="contact__bg photo" aria-hidden="true">
+    <Image src={bg} alt="" widths={[711]} sizes="100vw" />
+  </div>
+
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="label">{d.contact.label}</p>
+      <h2 class="h2">{d.contact.title}</h2>
+      <p class="lead">{d.contact.intro}</p>
+    </div>
+
+    <div class="contact__grid">
+      <form class="form reveal" data-form data-key={web3formsKey} novalidate>
+        <input type="hidden" name="access_key" value={web3formsKey} />
+        <input type="hidden" name="subject" value={f.subject} />
+        <input type="hidden" name="from_name" value="STRIKEBULL Website" />
+        <input type="hidden" name="language" value={lang.toUpperCase()} />
+        <input type="checkbox" name="botcheck" class="form__hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+        <div class="form__row">
+          <label class="field">
+            <span class="field__label">{f.name} *</span>
+            <input name="name" type="text" required autocomplete="name" />
+          </label>
+          <label class="field">
+            <span class="field__label">{f.phone} *</span>
+            <input name="phone" type="tel" required autocomplete="tel" inputmode="tel" />
+          </label>
+        </div>
+
+        <label class="field">
+          <span class="field__label">{f.email} *</span>
+          <input name="email" type="email" required autocomplete="email" />
+        </label>
+
+        <fieldset class="field days">
+          <legend class="field__label">{f.day} *</legend>
+          <div class="days__opts">
+            {schedule.map((s, i) => (
+              <label class="day">
+                <input type="radio" name="day" value={d.days[s.day]} required checked={i === 0} />
+                <span class="day__box">
+                  <strong>{d.days[s.day]}</strong>
+                  <small>{s.start}–{s.end}</small>
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <label class="field">
+          <span class="field__label">{f.message}</span>
+          <textarea name="message" rows="4" placeholder={f.messagePlaceholder}></textarea>
+        </label>
+
+        <label class="consent">
+          <input type="checkbox" name="consent" value="yes" required />
+          <span>
+            {f.consentBefore} <a href={localize(lang, '/datenschutz/')} target="_blank">{f.consentLink}</a> {f.consentAfter} *
+          </span>
+        </label>
+
+        <button type="submit" class="btn btn--block" data-submit data-sending={f.sending}>
+          <span data-submit-label>{f.submit}</span> <Icon name="arrow" size={20} />
+        </button>
+
+        <p class="form__status" role="status" aria-live="polite" data-status
+           data-success={f.success} data-error={f.error}></p>
+      </form>
+
+      <aside class="info reveal">
+        <ul class="info__list">
+          <li>
+            <Icon name="pin" />
+            <div>
+              <span class="info__label">{d.contact.info.address}</span>
+              <span>{club.venue}<br />{club.street}, {club.zip} {club.city}</span>
+            </div>
+          </li>
+          <li>
+            <Icon name="phone" />
+            <div>
+              <span class="info__label">{d.contact.info.phone}</span>
+              <a href={`tel:${club.phoneHref}`}>{club.phone}</a>
+            </div>
+          </li>
+          <li>
+            <Icon name="mail" />
+            <div>
+              <span class="info__label">{d.contact.info.email}</span>
+              <a href={`mailto:${club.email}`}>{club.email}</a>
+            </div>
+          </li>
+          <li>
+            <Icon name="clock" />
+            <div>
+              <span class="info__label">{d.contact.info.training}</span>
+              <span>{days} · {schedule[0].start}–{schedule[0].end}</span>
+            </div>
+          </li>
+        </ul>
+
+        <a class="btn btn--block info__wa" href={wa} target="_blank" rel="noopener">
+          <Icon name="whatsapp" /> WhatsApp
+        </a>
+
+        <div class="map" data-map data-src={mapsEmbed}>
+          <div class="map__placeholder">
+            <Icon name="pin" size={36} />
+            <button type="button" class="btn btn--ghost map__btn" data-map-load>{d.contact.map.show}</button>
+            <p class="map__note">{d.contact.map.note}</p>
+            <a class="map__link" href={mapsLink} target="_blank" rel="noopener">{d.contact.map.open} ↗</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact { background: var(--bg-2); isolation: isolate; overflow: hidden; }
+  .contact__bg { position: absolute; inset: 0 0 auto 0; height: 70%; z-index: -1; background: none; }
+  .contact__bg :global(img) { filter: grayscale(0.6) brightness(0.25) blur(2px); }
+  .contact__bg::after { background: linear-gradient(180deg, rgba(20,20,20,0.6) 0%, var(--bg-2) 100%); }
+
+  .contact__grid { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 24px; align-items: start; }
+
+  .form {
+    background: var(--surface); padding: clamp(24px, 4vw, 40px);
+    border-top: 3px solid var(--red);
+    display: grid; gap: 20px;
+  }
+  .form__hp { position: absolute; left: -9999px; opacity: 0; }
+  .form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .field { display: grid; gap: 8px; border: 0; padding: 0; margin: 0; min-width: 0; }
+  .field__label {
+    font-family: var(--font-head); font-size: 0.85rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--muted); padding: 0;
+  }
+  .field input, .field textarea {
+    width: 100%; padding: 14px 16px; background: var(--bg);
+    border: 1px solid #333; border-radius: 0; color: var(--text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .field textarea { resize: vertical; min-height: 110px; }
+  .field input:focus, .field textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201, 162, 74, 0.2); }
+  .field input::placeholder, .field textarea::placeholder { color: #6b665e; }
+  .form.was-validated :invalid { border-color: var(--red-2); }
+
+  .days__opts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
+  .day { position: relative; cursor: pointer; }
+  .day input { position: absolute; opacity: 0; inset: 0; }
+  .day__box {
+    display: flex; flex-direction: column; gap: 2px; padding: 14px 16px;
+    background: var(--bg); border: 1px solid #333; transition: border-color 0.2s, background 0.2s;
+  }
+  .day__box strong { font-family: var(--font-head); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
+  .day__box small { color: var(--muted); }
+  .day input:checked + .day__box { border-color: var(--gold); background: rgba(201, 162, 74, 0.1); }
+  .day input:checked + .day__box strong { color: var(--gold-2); }
+  .day input:focus-visible + .day__box { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  .consent { display: flex; gap: 12px; align-items: flex-start; font-size: 0.9rem; color: var(--muted); cursor: pointer; }
+  .consent input { width: 20px; height: 20px; margin-top: 2px; flex-shrink: 0; accent-color: var(--red); }
+  .consent a { color: var(--gold); }
+  .form.was-validated .consent input:invalid { outline: 2px solid var(--red-2); outline-offset: 2px; }
+
+  .form__status { font-size: 0.95rem; }
+  .form__status:empty { display: none; }
+  .form__status.is-success { color: #7fd88f; }
+  .form__status.is-error { color: #ff7a80; }
+  .btn[disabled] { opacity: 0.6; cursor: wait; transform: none; }
+
+  .info { background: var(--surface); padding: clamp(24px, 3vw, 32px); display: grid; gap: 20px; }
+  .info__list { list-style: none; padding: 0; margin: 0; display: grid; gap: 20px; }
+  .info__list li { display: flex; gap: 14px; align-items: flex-start; }
+  .info__list li > :global(svg) { color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+  .info__list div { display: flex; flex-direction: column; }
+  .info__label { font-family: var(--font-head); font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .info__list a { text-decoration: none; }
+  .info__list a:hover { color: var(--gold-2); }
+  .info__wa { --btn-bg: #25d366; color: #fff; }
+  .info__wa:hover { --btn-bg: #1fb457; }
+
+  .map { aspect-ratio: 4 / 3; background: var(--bg); border: 1px solid var(--line); position: relative; }
+  .map :global(iframe) { width: 100%; height: 100%; border: 0; filter: grayscale(0.4) invert(0.9) hue-rotate(180deg); }
+  .map__placeholder {
+    position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 12px; padding: 16px; text-align: center;
+    background: repeating-linear-gradient(135deg, rgba(201,162,74,0.05) 0 1px, transparent 1px 12px);
+  }
+  .map__placeholder > :global(svg) { color: var(--red-2); }
+  .map__btn { min-height: 42px; font-size: 0.85rem; }
+  .map__note { font-size: 0.78rem; color: var(--muted); max-width: 28ch; }
+  .map__link { font-size: 0.85rem; color: var(--gold); }
+
+  @media (max-width: 920px) {
+    .contact__grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 520px) {
+    .form__row { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  // --- Web3Forms submission ---
+  const form = document.querySelector<HTMLFormElement>('[data-form]');
+  if (form) {
+    const status = form.querySelector<HTMLElement>('[data-status]')!;
+    const submit = form.querySelector<HTMLButtonElement>('[data-submit]')!;
+    const label = form.querySelector<HTMLElement>('[data-submit-label]')!;
+    const defaultLabel = label.textContent;
+
+    const setStatus = (type: 'success' | 'error' | '', text = '') => {
+      status.className = `form__status${type ? ` is-${type}` : ''}`;
+      status.textContent = text;
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      form.classList.add('was-validated');
+      if (!form.checkValidity()) {
+        form.querySelector<HTMLElement>(':invalid')?.focus();
+        return;
+      }
+
+      const key = form.dataset.key ?? '';
+      if (!key || key.startsWith('YOUR_')) {
+        console.warn('Web3Forms access key is not set — see src/data/site.ts');
+        setStatus('error', status.dataset.error);
+        return;
+      }
+
+      submit.disabled = true;
+      label.textContent = submit.dataset.sending ?? '…';
+      setStatus('');
+
+      try {
+        const data = Object.fromEntries(new FormData(form).entries());
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+        if (!res.ok || !json.success) throw new Error(json.message || 'Request failed');
+        form.reset();
+        form.classList.remove('was-validated');
+        setStatus('success', status.dataset.success);
+      } catch (err) {
+        console.error(err);
+        setStatus('error', status.dataset.error);
+      } finally {
+        submit.disabled = false;
+        label.textContent = defaultLabel;
+      }
+    });
+  }
+
+  // --- Google Maps: load only after an explicit click (privacy) ---
+  const map = document.querySelector<HTMLElement>('[data-map]');
+  map?.querySelector('[data-map-load]')?.addEventListener('click', () => {
+    const iframe = document.createElement('iframe');
+    iframe.src = map.dataset.src!;
+    iframe.title = 'Google Maps';
+    iframe.loading = 'lazy';
+    iframe.referrerPolicy = 'no-referrer-when-downgrade';
+    map.replaceChildren(iframe);
+  });
+</script>

@@ -1,0 +1,76 @@
+---
+import { Image } from 'astro:assets';
+import { localize, t, type Lang } from '../i18n';
+import { club, schedule } from '../data/site';
+import Icon from './Icon.astro';
+import logo from '../../images/logo.jpg';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const d = t(lang);
+const year = new Date().getFullYear();
+const days = schedule.map((s) => d.days[s.day]).join(` ${d.days.and} `);
+---
+
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <Image src={logo} alt="STRIKEBULL MMA Club" width={96} height={96} class="footer__logo" />
+      <p class="footer__tagline">{d.footer.tagline}</p>
+    </div>
+
+    <div class="footer__col">
+      <h3 class="footer__h">{d.contact.info.address}</h3>
+      <p>{club.venue}<br />{club.street}<br />{club.zip} {club.city}</p>
+    </div>
+
+    <div class="footer__col">
+      <h3 class="footer__h">{d.nav.contact}</h3>
+      <p>
+        <a href={`tel:${club.phoneHref}`}>{club.phone}</a><br />
+        <a href={`mailto:${club.email}`}>{club.email}</a>
+      </p>
+      <a class="footer__insta" href={club.instagram} target="_blank" rel="noopener">
+        <Icon name="instagram" size={20} /> Instagram
+      </a>
+    </div>
+
+    <div class="footer__col">
+      <h3 class="footer__h">{d.contact.info.training}</h3>
+      <p>{days}<br />{schedule[0].start}–{schedule[0].end}</p>
+    </div>
+  </div>
+
+  <div class="container footer__bottom">
+    <p>© {year} {club.legalName}. {d.footer.rights}</p>
+    <nav aria-label="Legal">
+      <a href={localize(lang, '/impressum/')}>{d.footer.impressum}</a>
+      <a href={localize(lang, '/datenschutz/')}>{d.footer.privacy}</a>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .footer { background: #090909; border-top: 1px solid var(--line); padding-top: 64px; color: var(--muted); font-size: 0.95rem; }
+  .footer__grid { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 40px; padding-bottom: 48px; }
+  .footer__logo { width: 96px; height: 96px; border-radius: 50%; box-shadow: 0 0 0 2px var(--gold); }
+  .footer__tagline { margin-top: 20px; max-width: 26ch; }
+  .footer__h { font-size: 1rem; letter-spacing: 0.16em; color: var(--gold); margin-bottom: 14px; }
+  .footer a { text-decoration: none; }
+  .footer a:hover { color: var(--text); }
+  .footer__insta { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; color: var(--text); }
+  .footer__bottom {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
+    padding-block: 24px 96px; border-top: 1px solid var(--line-soft); font-size: 0.85rem;
+  }
+  .footer__bottom nav { display: flex; gap: 24px; }
+
+  @media (max-width: 860px) {
+    .footer__grid { grid-template-columns: 1fr 1fr; }
+    .footer__brand { grid-column: 1 / -1; display: flex; align-items: center; gap: 20px; }
+    .footer__tagline { margin-top: 0; }
+  }
+  @media (max-width: 480px) {
+    .footer__grid { grid-template-columns: 1fr; gap: 28px; }
+  }
+</style>
