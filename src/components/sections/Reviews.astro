@@ -3,6 +3,8 @@
  * ⚠️ PLACEHOLDER REVIEWS — the texts in src/i18n/*.json (reviews.items) are invented
  * to show the layout. Replace them with real member quotes (with permission)
  * or remove <Reviews /> from src/components/HomePage.astro before going live.
+ *
+ * Desktop: 3-column grid. Tablet/phone (≤920px): swipeable carousel with dots.
  */
 import Icon from '../Icon.astro';
 import { t, type Lang } from '../../i18n';
@@ -18,23 +20,31 @@ const d = t(Astro.props.lang);
       <h2 class="h2">{d.reviews.title}</h2>
     </div>
 
-    <div class="reviews">
-      {d.reviews.items.map((r, i) => (
-        <figure class="review reveal" style={`transition-delay:${i * 90}ms`}>
-          <Icon name="quote" size={40} class="review__quote" />
-          <div class="review__stars" role="img" aria-label="5/5">
-            {[0, 1, 2, 3, 4].map(() => <Icon name="star" size={18} />)}
-          </div>
-          <blockquote class="review__text"><p>{r.text}</p></blockquote>
-          <figcaption class="review__author">
-            <span class="review__avatar" aria-hidden="true">{r.name.charAt(0)}</span>
-            <span>
-              <strong>{r.name}</strong>
-              <span class="review__meta">{r.meta}</span>
-            </span>
-          </figcaption>
-        </figure>
-      ))}
+    <div class="carousel reveal" data-carousel>
+      <div class="reviews" data-track tabindex="0" aria-label={d.reviews.title}>
+        {d.reviews.items.map((r, i) => (
+          <figure class="review" data-slide aria-label={`${i + 1} / ${d.reviews.items.length}`}>
+            <Icon name="quote" size={40} class="review__quote" />
+            <div class="review__stars" role="img" aria-label="5/5">
+              {[0, 1, 2, 3, 4].map(() => <Icon name="star" size={18} />)}
+            </div>
+            <blockquote class="review__text"><p>{r.text}</p></blockquote>
+            <figcaption class="review__author">
+              <span class="review__avatar" aria-hidden="true">{r.name.charAt(0)}</span>
+              <span>
+                <strong>{r.name}</strong>
+                <span class="review__meta">{r.meta}</span>
+              </span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <div class="dots" aria-hidden="true">
+        {d.reviews.items.map((_, i) => (
+          <button type="button" class:list={['dot', { 'is-active': i === 0 }]} data-dot={i} tabindex="-1"></button>
+        ))}
+      </div>
     </div>
   </div>
 </section>
@@ -57,7 +67,82 @@ const d = t(Astro.props.lang);
     background: var(--gold-grad);
     clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
   }
+
+  .dots { display: none; }
+
   @media (max-width: 920px) {
-    .reviews { grid-template-columns: 1fr; max-width: 600px; margin-inline: auto; }
+    /* swipeable track, bleeding to the screen edges */
+    .reviews {
+      --card: min(84vw, 440px);
+      display: flex; gap: 14px;
+      margin-inline: calc(-1 * var(--gutter));
+      /* side padding = half the track minus half a card → first/last card can sit centered */
+      padding: 4px calc(50% + var(--gutter) - var(--card) / 2) 8px;
+      overflow-x: auto; overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+    .reviews::-webkit-scrollbar { display: none; }
+    .reviews:focus-visible { outline: none; }
+    .review {
+      flex: 0 0 var(--card);
+      scroll-snap-align: center;
+      scroll-snap-stop: always; /* one swipe = one card */
+      padding: 30px 24px 24px;
+    }
+
+    .dots { display: flex; justify-content: center; gap: 10px; margin-top: 22px; }
+    .dot {
+      width: 28px; height: 4px; padding: 0; border: 0; cursor: pointer;
+      background: rgba(242, 238, 230, 0.18);
+      transition: background 0.25s, width 0.25s;
+      /* larger tap area */
+      position: relative;
+    }
+    .dot::before { content: ''; position: absolute; inset: -12px -4px; }
+    .dot.is-active { background: var(--gold); width: 44px; }
   }
 </style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-carousel]').forEach((root) => {
+    const track = root.querySelector<HTMLElement>('[data-track]')!;
+    const slides = [...root.querySelectorAll<HTMLElement>('[data-slide]')];
+    const dots = [...root.querySelectorAll<HTMLButtonElement>('[data-dot]')];
+
+    const setActive = (i: number) => dots.forEach((d, j) => d.classList.toggle('is-active', i === j));
+
+    // slide centre in track scroll coordinates
+    const center = (s: HTMLElement) => s.offsetLeft - track.offsetLeft + s.offsetWidth / 2;
+
+    const goTo = (i: number) => {
+      const slide = slides[i];
+      if (!slide) return;
+      track.scrollTo({ left: center(slide) - track.clientWidth / 2, behavior: 'smooth' });
+    };
+
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+    // active dot = slide closest to the track's centre
+    let raf = 0;
+    track.addEventListener('scroll', () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const mid = track.scrollLeft + track.clientWidth / 2;
+        let best = 0, bestDist = Infinity;
+        slides.forEach((s, i) => {
+          const dist = Math.abs(center(s) - mid);
+          if (dist < bestDist) { bestDist = dist; best = i; }
+        });
+        setActive(best);
+      });
+    }, { passive: true });
+
+    // keyboard arrows when the track is focused
+    track.addEventListener('keydown', (e) => {
+      const current = dots.findIndex((d) => d.classList.contains('is-active'));
+      if (e.key === 'ArrowRight') { e.preventDefault(); goTo(Math.min(current + 1, slides.length - 1)); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(Math.max(current - 1, 0)); }
+    });
+  });
+</script>
