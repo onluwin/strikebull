@@ -77,13 +77,18 @@ const links = [
   .header {
     position: fixed; inset: 0 0 auto 0; z-index: 50;
     height: var(--header-h);
-    transition: background 0.3s, box-shadow 0.3s, backdrop-filter 0.3s;
   }
-  .header.is-scrolled, .header.is-open {
+  /* Background lives on a pseudo-element: backdrop-filter on .header itself would
+     become the containing block for the position:fixed mobile nav and squash it. */
+  .header::before {
+    content: ''; position: absolute; inset: 0; z-index: -1;
     background: rgba(14, 14, 14, 0.92);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     box-shadow: 0 1px 0 var(--line);
+    opacity: 0; transition: opacity 0.3s;
   }
+  .header.is-scrolled::before, .header.is-open::before { opacity: 1; }
   .header__inner { height: 100%; display: flex; align-items: center; gap: 24px; }
 
   .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
@@ -141,7 +146,7 @@ const links = [
     .burger { display: flex; }
     .nav {
       position: fixed; inset: var(--header-h) 0 0 0;
-      background: rgba(14, 14, 14, 0.98);
+      background: var(--bg);
       padding: 24px var(--gutter) 40px;
       overflow-y: auto;
       opacity: 0; visibility: hidden; transform: translateY(-8px);
